@@ -15,12 +15,10 @@ const Movie = () => {
   const [titulo, setTitulo] = useState("")
   const [imagen, setImagen] = useState("")
 
-  const [aviso, setAviso] = useState(true)
-  const [checkboxMarcada, setCheckboxMarcada] = useState(false)
 
-  const [categoriaPelicula, setcategoriaPelicula] = useState("general")
+  const [categoriaPelicula, setcategoriaPelicula] = useState("normal")
 
-  const urlBuscador =  `https://api.themoviedb.org/3/search/movie?query=${buscar}&include_adult=false&language=en-US&page=${pagina}`
+  const urlBuscador =  `https://api.themoviedb.org/3/search/movie?api_key=5608ee4ba79c9f09429b6592bf221b94&query=${buscar}&include_adult=false&language=en-US&page=${pagina}`
   const url = `https://api.themoviedb.org/3/discover/movie?api_key=5608ee4ba79c9f09429b6592bf221b94&page=${pagina}`
   const urlTaquilla = `https://api.themoviedb.org/3/movie/now_playing?api_key=5608ee4ba79c9f09429b6592bf221b94&language=en-US&page=${pagina}`
   const urlPopular = `https://api.themoviedb.org/3/movie/popular?api_key=5608ee4ba79c9f09429b6592bf221b94&language=en-US&page=${pagina}`
@@ -39,28 +37,31 @@ const Movie = () => {
   useEffect(() => {
     let currentUrl
     switch (categoriaPelicula) {
+
       case "popular":
         currentUrl = urlPopular
         break
+
       case "taquilla":
         currentUrl = urlTaquilla
         break
+
       case "best":
         currentUrl = urlBest
         break
 
+      case "buscador":
+        currentUrl = urlBuscador
+        break
+
       default:
         currentUrl = url 
-        break;
+        break
     } 
   
-  setTimeout(() => {
-    setAviso(false)
-  }, 10000)
-
+  
     getMovie(currentUrl)
   }, [pagina, categoriaPelicula])
-
 
 
   function sumaPagina() {
@@ -74,10 +75,8 @@ const Movie = () => {
   }
 
 const mostrarPelicula =((movie)=>{
-  console.log(movie)
   modal(movie.title,movie.poster_path,movie.overview)
 })
-
 
 const modal = (titulo,imagen,descripcion) => {
   setTitulo(titulo)
@@ -97,6 +96,7 @@ const cambiarCategoria = (categoria, urlCategoria) => {
 }
 
 const taquilla = (e) => {
+  
   e.preventDefault()
   cambiarCategoria("taquilla", urlTaquilla)
 }
@@ -111,37 +111,25 @@ const best = (e) => {
   cambiarCategoria("best", urlBest)
 }
 
+const buscarPeli = (e) => {
+  setbuscar(e.target.value)
+  cambiarCategoria("buscador",urlBuscador)
+}
 
-const handleCheckboxChange = () => {
- setCheckboxMarcada(!checkboxMarcada) 
-  setAviso(false)
-  
- 
+const addFavoritos = () => {
 
 }
 
+
   return (
   <>
-  
-  {aviso && (
-  <div className="aviso-container">
-
-    <p>Si NO desea aceptar los terminos de la pagina espere 10 segundos, de lo contrario aceptelos en la siguiente casilla:
-      <input type="checkbox" onChange={handleCheckboxChange} /></p>
-   
-
-    
-    
-
-  </div>
-)}
 
   <form className='filtrado'>
 
     <section className='buscador-botones'>
 
         <label>
-          <input  type="search" id='buscador' placeholder="Buscar..."/>
+          <input  type="search" id='buscador'value={buscar} onChange={buscarPeli} placeholder="Buscar..."/>
         </label>
 
         <label>
@@ -173,8 +161,7 @@ const handleCheckboxChange = () => {
     </section>
 
 
-
-    {loading && <div>Cargando...</div>}
+    {loading && <div className="centrado-load"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
     <div className='galeria'>
 
     {/* Recorremos las peliculas y creamos un card por cada una */}
@@ -193,7 +180,7 @@ const handleCheckboxChange = () => {
               <FontAwesomeIcon icon={faCircleXmark}/>
             </button>
 
-            <button className="favorite" >
+            <button className="favorite"  onClick ={addFavoritos}>
               <FontAwesomeIcon icon={faCrown} />
             </button>
 
