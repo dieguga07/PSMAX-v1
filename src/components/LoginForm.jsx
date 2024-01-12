@@ -52,11 +52,11 @@ const LoginForm = () => {
 
           <h2>Iniciar Sesión</h2>
 
-          <label htmlFor="username">Usuario:</label>
-          <input type="text" id="username" value={user} onChange={(e) => setUsernombre(e.target.value)}/>
+          <label >Usuario:</label>
+          <input type="text" value={user} onChange={(e) => setUsernombre(e.target.value)}/>
 
-          <label htmlFor="password">Contraseña:</label>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <label>Contraseña:</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
           
           <button type="button" onClick={handleLogin}>Iniciar Sesión</button>
 
@@ -74,7 +74,7 @@ const LoginForm = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
 export default LoginForm
