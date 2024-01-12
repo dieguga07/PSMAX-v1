@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleArrowDown, faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faCrown } from '@fortawesome/free-solid-svg-icons'
+import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faCrown, faEye } from '@fortawesome/free-solid-svg-icons'
 
 const Movie = () => {
+  
   const [pagina, setPagina] = useState(1)
   const [movieList, setMovieList] = useState([])
   const [loading, setloading] = useState(true)
@@ -15,8 +15,9 @@ const Movie = () => {
   const [titulo, setTitulo] = useState("")
   const [imagen, setImagen] = useState("")
 
-
   const [categoriaPelicula, setcategoriaPelicula] = useState("normal")
+
+  //Urls para llamar a la api y aplicar filtrados
 
   const urlBuscador =  `https://api.themoviedb.org/3/search/movie?api_key=5608ee4ba79c9f09429b6592bf221b94&query=${buscar}&include_adult=false&language=en-US&page=${pagina}`
   const url = `https://api.themoviedb.org/3/discover/movie?api_key=5608ee4ba79c9f09429b6592bf221b94&page=${pagina}`
@@ -59,8 +60,8 @@ const Movie = () => {
         break
     } 
   
-  
     getMovie(currentUrl)
+
   }, [pagina, categoriaPelicula])
 
 
@@ -75,6 +76,7 @@ const Movie = () => {
   }
 
 const mostrarPelicula =((movie)=>{
+  console.log(movie)
   modal(movie.title,movie.poster_path,movie.overview)
 })
 
@@ -116,9 +118,21 @@ const buscarPeli = (e) => {
   cambiarCategoria("buscador",urlBuscador)
 }
 
-const addFavoritos = () => {
+const addFavoritos = (movie) => {
+
+  const favorito = {
+    titulo: movie.title,
+    imagen: movie.poster_path
+  }
+
+  const favoritosJSON = localStorage.getItem("AlmacenFavoritos")
+  const listaFavoritos = favoritosJSON ? JSON.parse(favoritosJSON) : []
+  
+  const favoritoAdd = listaFavoritos.push(favorito)
 
 }
+
+
 
 
   return (
@@ -160,7 +174,6 @@ const addFavoritos = () => {
         
     </section>
 
-
     {loading && <div className="centrado-load"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
     <div className='galeria'>
 
@@ -180,10 +193,6 @@ const addFavoritos = () => {
               <FontAwesomeIcon icon={faCircleXmark}/>
             </button>
 
-            <button className="favorite"  onClick ={addFavoritos}>
-              <FontAwesomeIcon icon={faCrown} />
-            </button>
-
           </div>
 
         </div>
@@ -196,10 +205,11 @@ const addFavoritos = () => {
 
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
 
-          <a className="pie"  onClick={() => mostrarPelicula(movie)}>
-            <FontAwesomeIcon icon={faCircleArrowDown}/>
-          </a>
-
+          <div className="acciones">
+            <button className="pie" title="Ver más" onClick={() => mostrarPelicula(movie)}><FontAwesomeIcon icon={faEye} /></button>
+            <button className="pie" title="Añadir a favoritos" onClick={() => addFavoritos(movie)}><FontAwesomeIcon icon={faCrown}/></button>
+          </div>
+              
         </div>
 
       ))}

@@ -3,6 +3,9 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 
 const LayoutPrivate = () => {
+
+  
+  
   const { user } = useContext(UserContext)
   const [userData, setUserData] = useState(null)
 
@@ -30,13 +33,12 @@ const LayoutPrivate = () => {
       {user ? <Outlet /> : <Navigate to="/" />}
 
       <div>
-        <p>Usuario: {userData?.usuario}</p>
-        <p>Correo: {userData?.email}</p>
-        <p>Numero de teléfono: {userData?.numeroTelefono}</p>
+        <p>Usuario:</p>
+        <p>Correo:</p>
+        <p>Numero de teléfono:</p>
       </div>
     </>
   )
 }
 
 export default LayoutPrivate
-

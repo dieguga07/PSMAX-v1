@@ -1,6 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/UserContext'
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
 const ContactForm = () => {
 
     const { setUser } = useContext(UserContext)
@@ -62,8 +66,9 @@ const ContactForm = () => {
         <label>Aportacion:</label>
         <textarea value={aportacion} onChange={(e) => setAportacion(e.target.value)} />
         
-        <button type="button" onClick={handleContacto}>Enviar</button>
+        <button type="button" onClick={handleContacto}><FontAwesomeIcon icon={faPaperPlane} /></button>
 
+      
 
       </form>
 

@@ -33,7 +33,7 @@ const Navbar = () => {
               </li>
 
               <li className="navbar-list-item">
-                <NavLink to="/dashboard/list" className="navbar-link" title="Favoritos"><FontAwesomeIcon icon={faCrown} /></NavLink>
+                <NavLink to="/contact" className="navbar-link" title="Contácto"><FontAwesomeIcon icon={faHeadset} /></NavLink>
               </li>
 
               <li className="navbar-list-item ">
@@ -41,17 +41,13 @@ const Navbar = () => {
               </li>
 
               <li className="navbar-list-item ">
-                <NavLink to="/" onClick={Logout} className="navbar-link" title="Cerrar sesión"><FontAwesomeIcon icon={faRightFromBracket} /></NavLink>
-              </li>
-
-              <li className="navbar-list-item ">
                 <NavLink to="/dashboard" className="navbar-link" title="Usuario"><FontAwesomeIcon icon={faUser} /></NavLink>
               </li>
 
-              <li className="navbar-list-item">
-                <NavLink to="/contact" className="navbar-link" title="Contácto"><FontAwesomeIcon icon={faHeadset} /></NavLink>
+              <li className="navbar-list-item ">
+                <NavLink to="/" onClick={Logout} className="navbar-link" title="Cerrar sesión"><FontAwesomeIcon icon={faRightFromBracket} /></NavLink>
               </li>
-
+            
             </>
           ) : (
             <>
@@ -87,5 +83,4 @@ const Navbar = () => {
 }
 
 
-export default Navbar
 export default Navbar

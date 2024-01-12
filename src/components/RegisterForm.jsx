@@ -21,7 +21,6 @@ const RegisterForm = () => {
       Toast('Por favor, complete todos los campos')
       return
     }
-    
 
     // Validación del número de teléfono usando expresión regular
     const numeroRegex = /^[6789]\d{8}$/
@@ -32,7 +31,7 @@ const RegisterForm = () => {
       return
     }
 
-    // Validación del email usando expresión regular
+    
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
     if (!emailRegex.test(email)) {
@@ -43,7 +42,6 @@ const RegisterForm = () => {
 
     // Obtener la lista de usuarios del localStorage o inicializarla si no existe
     const userListJSON = localStorage.getItem('userList')
-    
     const userList = userListJSON ? JSON.parse(userListJSON) : []
 
     // Validar si el usuario ya existe
