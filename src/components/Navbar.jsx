@@ -2,16 +2,16 @@ import React, { useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCrown, faHeadset, faHouse, faRightFromBracket, faRightToBracket, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+
 const Navbar = () => {
 
 
   const {user,setUser}= useContext(UserContext)
   const navigate = useNavigate()
 
-  const Login = () =>{
-    setUser(true)
-    navigate("/dashboard")
-  }
 
   const Logout = () =>{
     setUser(false)
@@ -22,16 +22,18 @@ const Navbar = () => {
 
   return (
     <>
+
       <nav className="navbar">
         <ul className="navbar-list">
           {user ? (
             <>
+
               <li className="navbar-list-item">
-                <NavLink to="/" className="navbar-link">Inicio</NavLink>
+                <NavLink to="/" className="navbar-link" title="Inicio"><FontAwesomeIcon icon={faHouse} /></NavLink>
               </li>
 
               <li className="navbar-list-item">
-                <NavLink to="/list" className="navbar-link">Lista</NavLink>
+                <NavLink to="/dashboard/list" className="navbar-link" title="Favoritos"><FontAwesomeIcon icon={faCrown} /></NavLink>
               </li>
 
               <li className="navbar-list-item ">
@@ -39,22 +41,27 @@ const Navbar = () => {
               </li>
 
               <li className="navbar-list-item ">
-                <NavLink to="/" onClick={Logout} className="navbar-link">Cerrar sesión</NavLink>
+                <NavLink to="/" onClick={Logout} className="navbar-link" title="Cerrar sesión"><FontAwesomeIcon icon={faRightFromBracket} /></NavLink>
               </li>
 
               <li className="navbar-list-item ">
-                <NavLink to="/dashboard" className="navbar-link">Usuario</NavLink>
+                <NavLink to="/dashboard" className="navbar-link" title="Usuario"><FontAwesomeIcon icon={faUser} /></NavLink>
               </li>
 
               <li className="navbar-list-item">
-                <NavLink to="/contact" className="navbar-link">Contacto</NavLink>
+                <NavLink to="/contact" className="navbar-link" title="Contácto"><FontAwesomeIcon icon={faHeadset} /></NavLink>
               </li>
 
             </>
           ) : (
             <>
+
               <li className="navbar-list-item">
-                <NavLink to="/" className="navbar-link">Inicio</NavLink>
+                <NavLink to="/" className="navbar-link" title="Inicio"><FontAwesomeIcon icon={faHouse} /></NavLink>
+              </li>
+
+              <li className="navbar-list-item">
+                <NavLink to="/contact" className="navbar-link" title="Contácto"><FontAwesomeIcon icon={faHeadset} /></NavLink>
               </li>
 
               <li className="navbar-list-item ">
@@ -62,24 +69,23 @@ const Navbar = () => {
               </li>
 
               <li className="navbar-list-item ">
-                <NavLink to="/login" className="navbar-link">Iniciar sesión</NavLink>
+                <NavLink to="/login" className="navbar-link" title="Iniciar sesión"><FontAwesomeIcon icon={faRightToBracket}/></NavLink>
               </li>
 
               <li className="navbar-list-item ">
-                <NavLink to="/register" className="navbar-link">Registrarse</NavLink>
-              </li>
-
-              <li className="navbar-list-item">
-                <NavLink to="/contact" className="navbar-link">Contacto</NavLink>
+                <NavLink to="/register" className="navbar-link" title="Registrarse"><FontAwesomeIcon icon={faUserPlus} /></NavLink>
               </li>
 
             </>
           )}
         </ul>
       </nav>
-    </>
-  );
+  
+  </>
+
+  )
 }
 
 
+export default Navbar
 export default Navbar
