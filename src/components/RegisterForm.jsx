@@ -25,13 +25,16 @@ const RegisterForm = () => {
 
     // Validación del número de teléfono usando expresión regular
     const numeroRegex = /^[6789]\d{8}$/
+
     if (!numeroRegex.test(numeroTelefono)) {
       Toast('El número de teléfono no es correcto o el formato es erróneo')
       
       return
     }
 
+    // Validación del email usando expresión regular
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
     if (!emailRegex.test(email)) {
       Toast('El correo electrónico no es correcto o el formato es erróneo')
       
@@ -40,6 +43,7 @@ const RegisterForm = () => {
 
     // Obtener la lista de usuarios del localStorage o inicializarla si no existe
     const userListJSON = localStorage.getItem('userList')
+    
     const userList = userListJSON ? JSON.parse(userListJSON) : []
 
     // Validar si el usuario ya existe
@@ -80,17 +84,17 @@ const RegisterForm = () => {
 
           <h2>Registro</h2>
 
-          <label htmlFor="username">Usuario:</label>
-          <input type="text" id="username" value={usuario} onChange={(e) => setUsuario(e.target.value)} required/>
+          <label >Usuario:</label>
+          <input type="text" value={usuario} onChange={(e) => setUsuario(e.target.value)} />
 
-          <label htmlFor="correo">Correo electrónico:</label>
-          <input type="email" id="correo" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+          <label >Correo electrónico:</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-          <label htmlFor="numero">Número de Teléfono:</label>
-          <input type="text" id="number" value={numeroTelefono} onChange={(e) => setNumeroTelefono(e.target.value)} required/>
+          <label>Número de Teléfono:</label>
+          <input type="text" value={numeroTelefono} onChange={(e) => setNumeroTelefono(e.target.value)} />
 
-          <label htmlFor="password">Contraseña:</label>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+          <label>Contraseña:</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
           <button type="button" onClick={handleRegister}>Registrarse</button>
 
