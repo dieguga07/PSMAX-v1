@@ -2,7 +2,7 @@ import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home'
 import Register from '../pages/Register'
-import List from '../pages/List'
+
 import LayoutRoot from '../layouts/LayoutRoot'
 import Login from '../pages/Login'
 import Error from '../pages/Error'
@@ -34,40 +34,35 @@ export const router = createBrowserRouter([
             element: <Login/>,
           },
           {
-            path:"/register",
-            element: <Register/>,
-            
-          },
-          {
-            path:"/list",
-            element: <List/>,
-            
-          },
-          {
             path:"/contact",
             element: <Contacto/>,
             
           },
           {
-            path: "/:id",
+            path:"/register",
+            element: <Register/>,
             
+          },
+         
+          {
+            path:"/contact",
+            element: <Contacto/>,
             
-          }
+          },
         ]
       }
     ]
 },
 {
-  path:"/dashboard",
-  element:<LayoutPrivate></LayoutPrivate>,
-  children:[
+  path: '/dashboard',
+  element: <LayoutPrivate></LayoutPrivate>,
+  children: [
     {
-      index:true,
-      element:<Navbar/>
+      index: true,
+      element: <Navbar />
     },
-    
+
   ]
-  
 }
 
 ])
