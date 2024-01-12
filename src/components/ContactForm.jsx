@@ -64,11 +64,6 @@ const ContactForm = () => {
         
         <button type="button" onClick={handleContacto}>Enviar</button>
 
-        {
-         
-
-          
-        }
 
       </form>
 
