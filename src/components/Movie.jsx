@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faCrown, faEye } from '@fortawesome/free-solid-svg-icons'
 
 const Movie = () => {
-  
+
   const [pagina, setPagina] = useState(1)
   const [movieList, setMovieList] = useState([])
   const [loading, setloading] = useState(true)
@@ -98,7 +98,6 @@ const cambiarCategoria = (categoria, urlCategoria) => {
 }
 
 const taquilla = (e) => {
-  
   e.preventDefault()
   cambiarCategoria("taquilla", urlTaquilla)
 }
@@ -119,20 +118,20 @@ const buscarPeli = (e) => {
 }
 
 const addFavoritos = (movie) => {
-
   const favorito = {
     titulo: movie.title,
     imagen: movie.poster_path
   }
 
-  const favoritosJSON = localStorage.getItem("AlmacenFavoritos")
-  const listaFavoritos = favoritosJSON ? JSON.parse(favoritosJSON) : []
-  
-  const favoritoAdd = listaFavoritos.push(favorito)
+  const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+
+  favoritos.push(favorito);
+
+  localStorage.setItem('favoritos', JSON.stringify(favoritos));
+
+  console.log('Película añadida a favoritos:', favorito);
 
 }
-
-
 
 
   return (
@@ -203,7 +202,7 @@ const addFavoritos = (movie) => {
 
         <div className="card" key={movie.id}>
 
-          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} title={movie.title} />
 
           <div className="acciones">
             <button className="pie" title="Ver más" onClick={() => mostrarPelicula(movie)}><FontAwesomeIcon icon={faEye} /></button>

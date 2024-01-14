@@ -3,40 +3,40 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 
 const LayoutPrivate = () => {
-
-  
   
   const { user } = useContext(UserContext)
-  const [userData, setUserData] = useState(null)
+  const [favoritos, setFavoritos] = useState([])
 
   useEffect(() => {
-    
-    const userListJSON = localStorage.getItem('userList')
+    const favoritosJSON = localStorage.getItem("favoritos")
 
-    if (userListJSON) {
-
-      const userList = JSON.parse(userListJSON);
-      // Busca en la lista de usuarios 
-      const Usuarioseleccionado = userList.find((storedUser) => storedUser.usuario === user)
-
-      if (Usuarioseleccionado) {
-        setUserData(Usuarioseleccionado)
-      }else {
-      // Limpiamos la información almacenada
-        setUserData(null);
-      }
+    if (favoritosJSON) {
+      const favoritosArray = JSON.parse(favoritosJSON)
+      setFavoritos(favoritosArray)
     }
-  }, [user])
+  }, []) // Este efecto se ejecutará solo una vez al montar el componente
 
   return (
     <>
-      {user ? <Outlet /> : <Navigate to="/" />}
-
-      <div>
-        <p>Usuario:</p>
-        <p>Correo:</p>
-        <p>Numero de teléfono:</p>
-      </div>
+      {user ? (
+        <>
+          <Outlet />
+          <section className="favoritos">
+            <h2>Tus Favoritos</h2>
+            <div className="galeria">
+              {favoritos.map((favorito, index) => (
+                <div className="card" key={index}>
+                  <h1>{favorito.titulo}</h1>
+                  <img src={`https://image.tmdb.org/t/p/w500${favorito.imagen}`} alt={favorito.titulo} />
+                  <button>Eliminar</button>
+                </div>
+              ))}
+            </div>
+          </section>
+        </>
+      ) : (
+        <Navigate to="/" />
+      )}
     </>
   )
 }

@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContext'
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCrown, faHeadset, faHouse, faRightFromBracket, faRightToBracket, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faHeadset, faHouse, faRightFromBracket, faRightToBracket, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
 
