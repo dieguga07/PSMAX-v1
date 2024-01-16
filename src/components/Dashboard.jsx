@@ -8,8 +8,12 @@ const Dashboard = () => {
 * Esta parte se utiliza para la página personal , la cual contiene los favoritos.
 */
 
+//Estados
+
   const [favoritos, setFavoritos] = useState([])
 
+
+  //Cada vez que el usuario elimine una pelicula , esto se vera reflejado con el useEffect
   useEffect(() => {
     const favoritosJSON = localStorage.getItem("favoritos")
   
@@ -19,6 +23,7 @@ const Dashboard = () => {
     }
   }, [])
 
+  //función que filtra los favoritos y actualiza la lista
   const eliminarFav = (titulo) => {
     const favoritosFiltrados = favoritos.filter((favorito) => favorito.titulo !== titulo)
     setFavoritos(favoritosFiltrados)

@@ -10,6 +10,8 @@ const LoginForm = () => {
 * Formulario para el Login del usuario
 */
 
+
+//Estados
   const { setUser } = useContext(UserContext)
   const navigate = useNavigate()
 
@@ -23,6 +25,7 @@ const LoginForm = () => {
 
   // Validación de campos vacíos y creación de un toast por si da error
   const Login = () => {
+    //
   const userListJSON = localStorage.getItem('userList')
 
     if (user.trim() === "" || password.trim() === "") {

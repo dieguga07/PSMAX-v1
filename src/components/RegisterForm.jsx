@@ -4,6 +4,13 @@ import { UserContext } from '../context/UserContext'
 
 const RegisterForm = () => {
 
+/**
+* @author Diego Gutiérrez Vázquez
+* 
+* Formulario de Registro , parecido al de Login pero cambiando algunas cosas
+*/
+
+  //Estados
   const [usuario, setUsuario] = useState('')
   const [email, setEmail] = useState('')
   const [numeroTelefono, setNumeroTelefono] = useState('')

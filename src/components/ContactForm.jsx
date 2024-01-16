@@ -11,6 +11,9 @@ const ContactForm = () => {
 * Formulario para el contácto del usuario
 */
 
+
+
+//Estados
     const [user, setUsernombre] = useState("")
     const [aportacion, setAportacion] = useState("")
     const [email, setEmail] = useState("")
@@ -35,7 +38,7 @@ const ContactForm = () => {
           setAportacion("")
           setEmail("")
 
-          Toast('Enviando datos...')
+          Toast("Enviando datos...")
     })
 
 
@@ -59,10 +62,10 @@ const ContactForm = () => {
         <h2>Contactanos</h2>
 
         <label>Usuario:</label>
-        <input typeof='text' value={user} onChange={(e) => setUsernombre(e.target.value)}/>
+        <input typeof="text" value={user} onChange={(e) => setUsernombre(e.target.value)}/>
 
         <label>Correo electrónico:</label>
-        <input typeof='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+        <input typeof="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
         <label>Aportacion:</label>
         <textarea value={aportacion} onChange={(e) => setAportacion(e.target.value)} />

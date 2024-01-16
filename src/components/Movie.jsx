@@ -12,6 +12,9 @@ const Movie = () => {
 *
 */  
 
+
+//Estados
+
   const [pagina, setPagina] = useState(1)
   const [movieList, setMovieList] = useState([])
   const [loading, setloading] = useState(true)
