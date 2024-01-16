@@ -14,7 +14,6 @@ const Movie = () => {
 
 
 //Estados
-
   const [pagina, setPagina] = useState(1)
   const [movieList, setMovieList] = useState([])
   const [loading, setloading] = useState(true)
@@ -39,7 +38,7 @@ const Movie = () => {
   const urlPopular = `https://api.themoviedb.org/3/movie/popular?api_key=5608ee4ba79c9f09429b6592bf221b94&language=en-US&page=${pagina}`
   const urlBest = `https://api.themoviedb.org/3/movie/top_rated?api_key=5608ee4ba79c9f09429b6592bf221b94&language=en-US&page=${pagina}`
 
-
+//Llamada a la API
 const getMovie = ((urlMostrar) => {
     console.log(urlMostrar)
     setloading(true)
@@ -49,6 +48,7 @@ const getMovie = ((urlMostrar) => {
       .finally(() => setloading(false))
   })
 
+//Renderiza cada cambio de página o de url de llamada a la API
 useEffect(() => {
     let currentUrl
     switch (categoriaPelicula) {
@@ -78,6 +78,7 @@ useEffect(() => {
 
   }, [pagina, categoriaPelicula])
 
+//Funciones de sumar o restar página
 
 function sumaPagina() {
         setPagina(pagina + 1)
@@ -89,8 +90,9 @@ function restaPagina() {
     }
   }
 
+
+//Funcion que se encarga de mostrar un modal 
 const mostrarPelicula =((movie)=>{
-  console.log(movie)
   modal(movie.title,movie.poster_path,movie.overview)
 })
 
@@ -105,6 +107,7 @@ const cerrarModal = () => {
   setModal(false)
 }
 
+//funcion que cambia la categoria según los parámetros pasados por las funciones:taquilla ,popular ,best y buscarPeli
 const cambiarCategoria = (categoria, urlCategoria) => {
   setcategoriaPelicula(categoria)
   setPagina(1)
@@ -130,6 +133,8 @@ const buscarPeli = (e) => {
   setbuscar(e.target.value)
   cambiarCategoria("buscador",urlBuscador)
 }
+
+//fucion llamada en el boton de añadir favoritos
 const addFavoritos = (movie) => {
   const favorito = {
     titulo: movie.title,
@@ -137,18 +142,17 @@ const addFavoritos = (movie) => {
   }
 
   const favoritos = JSON.parse(localStorage.getItem('favoritos')) || []
+  //comprueba si existe ya en la lista
   const existeEnFavoritos = favoritos.some((newfav) => newfav.titulo === favorito.titulo)
 
-  if (!existeEnFavoritos) {
-    favoritos.push(favorito)
-    localStorage.setItem('favoritos', JSON.stringify(favoritos))
+  !existeEnFavoritos? (
+    (
+      favoritos.push(favorito),localStorage.setItem('favoritos', JSON.stringify(favoritos)),
 
-    Toast("Película añadida a favoritos.")
-    
-  } else {
-    Toast("La película ya está en favoritos.")
-    
-  }
+      Toast("Película añadida a favoritos.")
+    )
+  )
+  : Toast("La película ya está en favoritos.")
   
 }
 
@@ -160,7 +164,6 @@ const Toast = (mensaje) => {
     setMostrarToast(false)
   }, 2000)
 }
-
 
 
   return (
@@ -255,7 +258,6 @@ const Toast = (mensaje) => {
         </button>
 
     </section>
-
 
     {mostrarToast && (
         

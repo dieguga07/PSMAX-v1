@@ -36,12 +36,9 @@ const Dashboard = () => {
         <h2>Tus Favoritos</h2>
         <div className="galeria">
           {favoritos.map((favorito, index) => (
-        
-  
             <div className="card" key={index}>
               <img src={`https://image.tmdb.org/t/p/w500${favorito.imagen}`} title={favorito.titulo} />
               <button onClick={() => eliminarFav(favorito.titulo)}>Eliminar</button>
-
             </div>
           ))}
         </div>
