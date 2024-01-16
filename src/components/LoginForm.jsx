@@ -13,7 +13,7 @@ const LoginForm = () => {
   const [mensajeToast, setMensajeToast] = useState("")
 
   // Validación de campos vacíos y creación de un toast por si da error
-  const handleLogin = () => {
+  const Login = () => {
   const userListJSON = localStorage.getItem('userList')
 
     if (user.trim() === "" || password.trim() === "") {
@@ -32,7 +32,7 @@ const LoginForm = () => {
     } else {
       Toast('El usuario o la contraseña no coinciden')
     }
-  };
+  }
 
   // Función para mostrar el toast y establecer temporizador
   const Toast = (mensaje) => {
@@ -58,7 +58,7 @@ const LoginForm = () => {
           <label>Contraseña:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
           
-          <button type="button" onClick={handleLogin}>Iniciar Sesión</button>
+          <button type="button" onClick={Login}>Iniciar Sesión</button>
 
         </form>
 

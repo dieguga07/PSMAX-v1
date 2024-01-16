@@ -15,7 +15,7 @@ const RegisterForm = () => {
   const { setUser } = useContext(UserContext)
   const navigate = useNavigate()
 
-  const handleRegister = () => {
+  const Register = () => {
    
     if (usuario.trim() === "" || email.trim() === "" || numeroTelefono.trim() === "" || password.trim() === "") {
       Toast('Por favor, complete todos los campos')
@@ -94,7 +94,7 @@ const RegisterForm = () => {
           <label>Contraseña:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-          <button type="button" onClick={handleRegister}>Registrarse</button>
+          <button type="button" onClick={Register}>Registrarse</button>
 
         </form>
 

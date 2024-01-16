@@ -7,8 +7,6 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 const ContactForm = () => {
 
-    const { setUser } = useContext(UserContext)
-
     const [user, setUsernombre] = useState("")
     const [aportacion, setAportacion] = useState("")
     const [email, setEmail] = useState("")
@@ -16,7 +14,7 @@ const ContactForm = () => {
     const [mostrarToast, setMostrarToast] = useState(false)
     const [mensajeToast, setMensajeToast] = useState("")
 
-    const handleContacto = (()=>{
+    const Contacto = (()=>{
 
         if (user.trim() === "" || aportacion.trim() === "" || email.trim() ==='') {
             Toast('Por favor, complete todos los campos')
@@ -66,7 +64,7 @@ const ContactForm = () => {
         <label>Aportacion:</label>
         <textarea value={aportacion} onChange={(e) => setAportacion(e.target.value)} />
         
-        <button type="button" onClick={handleContacto}><FontAwesomeIcon icon={faPaperPlane} /></button>
+        <button type="button" onClick={Contacto}><FontAwesomeIcon icon={faPaperPlane} /></button>
 
       
 

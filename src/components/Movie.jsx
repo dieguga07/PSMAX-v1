@@ -11,6 +11,7 @@ const Movie = () => {
   const [buscar, setbuscar] = useState("")
   
   const [mostrarModal, setModal] = useState(false)
+
   const [descripcion, setDescripcion] = useState("")
   const [titulo, setTitulo] = useState("")
   const [imagen, setImagen] = useState("")
@@ -26,7 +27,7 @@ const Movie = () => {
   const urlBest = `https://api.themoviedb.org/3/movie/top_rated?api_key=5608ee4ba79c9f09429b6592bf221b94&language=en-US&page=${pagina}`
 
 
-  const getMovie = ((urlMostrar) => {
+const getMovie = ((urlMostrar) => {
     console.log(urlMostrar)
     setloading(true)
     fetch(urlMostrar)
@@ -35,7 +36,7 @@ const Movie = () => {
       .finally(() => setloading(false))
   })
 
-  useEffect(() => {
+useEffect(() => {
     let currentUrl
     switch (categoriaPelicula) {
 
@@ -65,11 +66,11 @@ const Movie = () => {
   }, [pagina, categoriaPelicula])
 
 
-  function sumaPagina() {
+function sumaPagina() {
         setPagina(pagina + 1)
   }
 
-  function restaPagina() {
+function restaPagina() {
     if (pagina > 1) {
       setPagina(pagina - 1)
     }
@@ -116,21 +117,24 @@ const buscarPeli = (e) => {
   setbuscar(e.target.value)
   cambiarCategoria("buscador",urlBuscador)
 }
-
 const addFavoritos = (movie) => {
   const favorito = {
     titulo: movie.title,
     imagen: movie.poster_path
   }
 
-  const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+  const favoritos = JSON.parse(localStorage.getItem('favoritos')) || []
+  const existeEnFavoritos = favoritos.some((newfav) => newfav.titulo === favorito.titulo)
 
-  favoritos.push(favorito);
+  if (!existeEnFavoritos) {
+    favoritos.push(favorito)
+    localStorage.setItem('favoritos', JSON.stringify(favoritos))
 
-  localStorage.setItem('favoritos', JSON.stringify(favoritos));
-
-  console.log('Película añadida a favoritos:', favorito);
-
+    console.log("Película añadida a favoritos.")
+  } else {
+    console.log("La película ya está en favoritos.")
+  }
+  
 }
 
 
@@ -230,14 +234,5 @@ const addFavoritos = (movie) => {
     </>
   )
 }
-
-// Se declaran varios estados utilizando el hook useState para manejar diferentes aspectos de la aplicación, como la página actual
-// (pagina),la lista de películas (movieList), el estado de carga (loading), términos de búsqueda (buscar), etc.
-
-// Se utiliza el hook useEffect para ejecutar el código dentro de él cuando cambian las dependencias especificadas (pagina y categoriaPelicula). 
-// Dentro de este efecto, se determina la URL actual en función de la categoría seleccionada y se llama a getMovie con esa URL.
-
-// Estas funciones cambian la categoría de las películas y reinician la página, luego llaman a getMovie con la nueva URL 
-// correspondiente a la categoría seleccionada.
 
 export default Movie
