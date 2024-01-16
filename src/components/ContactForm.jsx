@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react'
-import { UserContext } from '../context/UserContext'
-
+import React, { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 const ContactForm = () => {
+
+/**
+* @author Diego Gutiérrez Vázquez
+* 
+* Formulario para el contácto del usuario
+*/
 
     const [user, setUsernombre] = useState("")
     const [aportacion, setAportacion] = useState("")
@@ -15,12 +19,11 @@ const ContactForm = () => {
     const [mensajeToast, setMensajeToast] = useState("")
 
     const Contacto = (()=>{
-
+     
         if (user.trim() === "" || aportacion.trim() === "" || email.trim() ==='') {
             Toast('Por favor, complete todos los campos')
             return
           }
-
           const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
         if (!emailRegex.test(email)) {

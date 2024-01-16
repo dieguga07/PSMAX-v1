@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
 const Dashboard = () => {
+
+/**
+* @author Diego Gutiérrez Vázquez
+* 
+* Esta parte se utiliza para la página personal , la cual contiene los favoritos.
+*/
+
   const [favoritos, setFavoritos] = useState([])
 
   useEffect(() => {
@@ -24,14 +31,17 @@ const Dashboard = () => {
         <h2>Tus Favoritos</h2>
         <div className="galeria">
           {favoritos.map((favorito, index) => (
+        
+  
             <div className="card" key={index}>
-              <h1>{favorito.titulo}</h1>
-              <img src={`https://image.tmdb.org/t/p/w500${favorito.imagen}`} alt={favorito.titulo} />
+              <img src={`https://image.tmdb.org/t/p/w500${favorito.imagen}`} title={favorito.titulo} />
               <button onClick={() => eliminarFav(favorito.titulo)}>Eliminar</button>
+
             </div>
           ))}
         </div>
       </section>
+
     </>
   )
 }

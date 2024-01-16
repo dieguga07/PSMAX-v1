@@ -3,6 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 
 const LoginForm = () => {
+
+/**
+* @author Diego Gutiérrez Vázquez
+* 
+* Formulario para el Login del usuario
+*/
+
   const { setUser } = useContext(UserContext)
   const navigate = useNavigate()
 
@@ -11,6 +18,8 @@ const LoginForm = () => {
 
   const [mostrarToast, setMostrarToast] = useState(false)
   const [mensajeToast, setMensajeToast] = useState("")
+
+  
 
   // Validación de campos vacíos y creación de un toast por si da error
   const Login = () => {

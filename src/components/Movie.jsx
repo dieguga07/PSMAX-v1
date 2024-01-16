@@ -5,6 +5,13 @@ import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faCrown, faEye } 
 
 const Movie = () => {
 
+/**
+* @author Diego Gutiérrez Vázquez
+* 
+* Parte central del proyecto, En ella se ejecutan la mayoría de acciones, como pueden ser el filtrado, la paginación...
+*
+*/  
+
   const [pagina, setPagina] = useState(1)
   const [movieList, setMovieList] = useState([])
   const [loading, setloading] = useState(true)
@@ -17,6 +24,9 @@ const Movie = () => {
   const [imagen, setImagen] = useState("")
 
   const [categoriaPelicula, setcategoriaPelicula] = useState("normal")
+
+  const [mostrarToast, setMostrarToast] = useState(false)
+  const [mensajeToast, setMensajeToast] = useState('')
 
   //Urls para llamar a la api y aplicar filtrados
 
@@ -130,12 +140,24 @@ const addFavoritos = (movie) => {
     favoritos.push(favorito)
     localStorage.setItem('favoritos', JSON.stringify(favoritos))
 
-    console.log("Película añadida a favoritos.")
+    Toast("Película añadida a favoritos.")
+    
   } else {
-    console.log("La película ya está en favoritos.")
+    Toast("La película ya está en favoritos.")
+    
   }
   
 }
+
+const Toast = (mensaje) => {
+  setMensajeToast(mensaje)
+  setMostrarToast(true)
+
+  setTimeout(() => {
+    setMostrarToast(false)
+  }, 2000)
+}
+
 
 
   return (
@@ -230,6 +252,17 @@ const addFavoritos = (movie) => {
         </button>
 
     </section>
+
+
+    {mostrarToast && (
+        
+        <div className="toast">
+
+          <p>{mensajeToast}</p>
+
+        </div>
+
+      )}
 
     </>
   )

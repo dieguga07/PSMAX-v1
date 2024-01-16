@@ -7,17 +7,20 @@
 html{
     background-color:rgb(27, 18, 13) ;
     color: rgb(229,229,203);
+    text-shadow: .1em .1em 0 hsl(210, 3%, 11%);
 }
 
 .navbar {
     background-color: rgba(60, 42, 32, 1);
     position: relative;
+    max-width: 100%;
+    min-width: 400px;
     height: 111px;
     margin-top: 3rem;
     border-radius: 50px;
     box-shadow: 3px 6px 28.9px 0px #000;
     display: flex;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
     padding: 0 2rem;
 }
@@ -40,18 +43,21 @@ html{
 }
 
 .card {
+  width: calc(33.33% - 20px);
     display: flex;
     justify-content: center;
     flex-direction: column;
     width: calc(20% - 40px); 
-    max-width: 300px; 
-    height: 600px;
+    max-width: 500px; 
+    min-width: 300px;
+    height: 480px;
     border: 1px solid rgb(229, 229, 203);
     border-radius: 15px;
     background-color: rgba(60, 42, 32, 1);
     margin: 20px;
     overflow: hidden;
     box-sizing: border-box;
+    
  
 }
 
@@ -62,7 +68,7 @@ html{
 }
 
 .card a{
-
+    display: flex;
     text-decoration: none;
     color: bisque;
     text-align: center;
@@ -72,36 +78,32 @@ html{
 .acciones {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items:end;
     width: 100%;
-    margin-top: 10px;
+    
 }
 
 .pie {
-    border-radius: 10%; /* Ajusta según tus necesidades */
+    border-radius: 0%;
     padding: 10px;
-    width: 48%;
+    width: 100%;
     text-align: center;
-    margin-bottom: 10px;
+    border-color: #ffffff6d;
 }
 
-  @media screen and (max-width: 600px) {
-    .pie {
-      width: 100%; 
-    }
-  }
 
 .container {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    box-sizing: border-box;
-    border: 1px solid rgba(229, 229, 203);
-    border-radius: 5px;
-    background-color: rgba(60, 42, 32, 1);
-    max-width: 400px;
-    margin: auto; 
-    padding: 20px; 
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid rgba(229, 229, 203);
+  border-radius: 5px;
+  background-color: rgba(60, 42, 32, 1);
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
 }
 
 .container form{
@@ -111,10 +113,16 @@ html{
     flex-direction: column;
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
+.container form {
+  display: flex;
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
 
 label {
     margin-bottom: 8px;
@@ -137,16 +145,15 @@ button {
     
 }
 
-
-
 button:hover {
     background-color: rgba(27, 18, 13);
 }
 
-.filtrado{
-
-    text-align: center;
-    
+.filtrado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 #genero{
@@ -156,6 +163,8 @@ button:hover {
     color: rgba(229, 229, 203);
     border-radius: 15px;
     border-color: rgba(229, 229, 203);
+    max-width: 100px; 
+    min-width: 100px;
 
 }
 
@@ -167,6 +176,9 @@ button:hover {
     color: rgba(229, 229, 203);
     border-radius: 15px;
     border-color: rgba(229, 229, 203);
+    max-width: 100px; 
+    min-width: 100px;
+
     
 }
 
@@ -178,6 +190,9 @@ button:hover {
     color: rgba(229, 229, 203);
     border-radius: 15px;
     border-color: rgba(229, 229, 203);
+    max-width: 100px; 
+    min-width: 100px;
+
 }
 
 #buscador{
@@ -187,6 +202,9 @@ button:hover {
     color: rgba(229, 229, 203);
     border-radius: 15px;
     border-color: rgba(229, 229, 203);
+    max-width: 200px; 
+    min-width: 100px;
+
 }
 
 .galeria {
@@ -204,25 +222,38 @@ button:hover {
 
 .buscador-botones{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin: 20px;
+    max-width: 100%;
+    min-width: 200px;
 
 }
 
-.toast{
-    position: fixed;
-    margin-top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(60, 42, 32, 1);
-    color: rgba(229, 229, 203);
-    z-index: 1;
-    width: 200px;
-    text-align: center;
-    border: 1px solid rgba(229, 229, 203);
-    border-radius: 4px;
+.toast {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color:  rgba(60, 42, 32, 1);
+  color:rgba(229, 229, 203);
+  padding: 10px;
+  border-radius: 5px;
+  display: block;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+  border: 5px solid rgba(229, 229, 203);
+}
 
+.toast p {
+  margin: 0;
+}
+
+.toast.hidden {
+  opacity: 0;
+  display: none;
 }
 
 .new-toast-container {
@@ -312,50 +343,9 @@ button:hover {
     margin-left: 5px;
   }
 
-
-
-
-
-
-  .lds-ring {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-  }
-  .lds-ring div {
-    box-sizing: border-box;
-    display: block;
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border: 8px solid #fed;
-    border-radius: 50%;
-    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #fed transparent transparent transparent;
-  }
-  .lds-ring div:nth-child(1) {
-    animation-delay: -0.45s;
-  }
-  .lds-ring div:nth-child(2) {
-    animation-delay: -0.3s;
-  }
-  .lds-ring div:nth-child(3) {
-    animation-delay: -0.15s;
-  }
-  @keyframes lds-ring {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-
   .centrado-load{
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  

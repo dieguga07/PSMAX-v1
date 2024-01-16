@@ -2,11 +2,16 @@ import React, { useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadset, faHouse, faRightFromBracket, faRightToBracket, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
+
+/**
+* @author Diego Gutiérrez Vázquez
+* 
+* Parte del proyecto que refleja el resultado del router con una pequeña funcionalidad de Logout
+*/
 
 
   const {user,setUser}= useContext(UserContext)
