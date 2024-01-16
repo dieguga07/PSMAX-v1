@@ -28,7 +28,7 @@ html{
 .navbar-list {
     display: flex;
     list-style: none;
-    gap: 20px; /* Nueva línea para agregar espacio entre los elementos de la lista */
+    gap: 20px; 
 }
 
 .navbar-link {
@@ -50,7 +50,7 @@ html{
     width: calc(20% - 40px); 
     max-width: 500px; 
     min-width: 300px;
-    height: 480px;
+    height: 600px;
     border: 1px solid rgb(229, 229, 203);
     border-radius: 15px;
     background-color: rgba(60, 42, 32, 1);
@@ -121,7 +121,6 @@ html{
   display: flex;
   flex-direction: column;
 }
-
 
 
 label {
